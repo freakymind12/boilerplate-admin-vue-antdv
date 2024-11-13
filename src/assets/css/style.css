@@ -1,0 +1,15 @@
+.ant-row {
+  margin-bottom: 16px;
+}
+
+.ant-tag:hover {
+  transform: scale(1.05); /* sedikit membesar */
+  transition: transform 0.2s ease; /* durasi dan animasi smooth */
+  cursor: pointer;
+}
+
+.header-big-font {
+  font-size: large;
+  color: #8c8c8c;
+  font-weight: bold;
+}
