@@ -15,15 +15,15 @@
       />
     </a-form-item>
     <a-form-item label="Role" name="role">
-      <a-select
+      <a-radio-group
         v-model:value="form.role"
+        :disabled="props.mode === 'delete' || props.data.roles === 'admin'"
         placeholder="Role"
-        :disabled="props.mode === 'delete'"
       >
-        <a-select-option value="admin">ADMIN</a-select-option>
-        <a-select-option value="staff">STAFF</a-select-option>
-        <a-select-option value="viewer">VIEWER</a-select-option>
-      </a-select>
+        <a-radio value="admin"><a-tag color="green">ADMIN</a-tag></a-radio>
+        <a-radio value="staff"><a-tag color="purple">STAFF</a-tag></a-radio>
+        <a-radio value="viewer"><a-tag color="volcano">VIEWER</a-tag></a-radio>
+      </a-radio-group>
     </a-form-item>
     <a-alert
       message="If you submit it will delete the above data from the database"
@@ -61,7 +61,7 @@ import { ref, watch } from 'vue'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
-
+const emit = defineEmits(['close'])
 const props = defineProps({
   mode: {
     type: String,
@@ -99,5 +99,6 @@ const handleAction = mode => {
   if (mode == 'delete') {
     userStore.deleteUser(props.data.id_user)
   }
+  emit('close')
 }
 </script>

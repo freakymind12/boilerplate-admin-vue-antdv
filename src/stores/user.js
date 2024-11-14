@@ -1,6 +1,6 @@
 import { message } from 'ant-design-vue'
-import axios from 'axios'
 import { defineStore } from 'pinia'
+import api from '@/axios/interceptor'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', {
   actions: {
     async fetchUsers() {
       try {
-        const response = await axios.get('http://localhost:5010/api/users')
+        const response = await api.get('/users')
         this.usersList = response.data?.data.users
         const totalByRole = response.data?.data.total
         this.totalUsers = {
@@ -29,13 +29,12 @@ export const useUserStore = defineStore('user', {
           total: this.usersList.length,
         }
       } catch (error) {
-        message.error(error.response.data.message)
         console.error('Fetching user data failed', error)
       }
     },
     async updateRole(id, role) {
       try {
-        await axios.patch('http://localhost:5010/api/users/roles', {
+        await api.patch('/users/roles', {
           id_user: id,
           roles: role,
         })
@@ -48,7 +47,7 @@ export const useUserStore = defineStore('user', {
     },
     async deleteUser(id) {
       try {
-        await axios.delete(`http://localhost:5010/api/users/${id}`)
+        await api.delete(`/users/${id}`)
         message.success('Success delete user')
         this.fetchUsers()
       } catch (error) {

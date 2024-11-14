@@ -1,5 +1,5 @@
 <template>
-  <a-col :xs="{ span: 24 }" :lg="{ span: 6 }">
+  <a-col :xs="{ span: xs }" :lg="{ span: lg }">
     <a-card>
       <a-statistic
         :value="value"
@@ -38,6 +38,14 @@ defineProps({
   color: {
     type: String,
     default: '#000',
+  },
+  xs: {
+    type: Number,
+    default: 24,
+  },
+  lg: {
+    type: Number,
+    default: 6,
   },
 })
 </script>

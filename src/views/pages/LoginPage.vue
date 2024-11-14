@@ -82,7 +82,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   isActive.value = false
-  console.log(isActive.value)
 })
 </script>
 

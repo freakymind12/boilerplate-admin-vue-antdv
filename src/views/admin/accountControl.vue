@@ -53,7 +53,7 @@
       :modal-title="modal.title"
     >
       <template #form>
-        <AdminForm :data="modal.data" :mode="modal.mode" />
+        <AdminForm :data="modal.data" :mode="modal.mode" @close="handleClose" />
       </template>
     </BaseModalForm>
   </div>
